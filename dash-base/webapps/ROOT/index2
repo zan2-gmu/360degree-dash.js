@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+	<head>
+	  <title>Dash.js test sample</title>
+	  <style>
+		video{
+		  width: 1080px;
+		  height: 720px;
+		}
+	  </style>
+	</head>
+	<body>
+	  <div>
+		<video id="videoPlayer" controls></video>
+	  </div>
+	  <script src="./dash.all.min.js"></script>
+	  <script>
+		(function(){
+		  //var url = "https://dash.akamaized.net/envivio/EnvivioDash3/manifest.mpd";
+		  var url = "http://35.221.48.44:8080/dash/output.mpd";
+		  var player = dashjs.MediaPlayer().create();
+		  player.initialize(document.querySelector("#videoPlayer"), url, true);
+		})();
+	  </script>
+	</body>
+</html>

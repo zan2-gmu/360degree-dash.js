@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<title>my 360-degree video test player</title>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+		<style>
+			*{margin: 0; padding: 0;}
+			#video1{width:480px; height:270px; background-color:#f0f0f0; border:0px; position:fixed; left:0px; top:0px;}
+			#video2{width:480px; height:270px; background-color:#f0f0f0; border:0px; position:fixed; left:480px; top:0px;}	
+			#video3{width:480px; height:270px; background-color:#f0f0f0; border:0px; position:fixed; left:0px; top:270px;}	
+			#video4{width:480px; height:270px; background-color:#f0f0f0; border:0px; position:fixed; left:480px; top:270px;}
+			#b1{width:50px; height:50px; position:fixed; left:150px; bottom:100px;}
+			#b2{width:50px; height:50px; position:fixed; left:300px; bottom:100px;}
+			#b3{width:50px; height:50px; position:fixed; left:450px; bottom:100px;}
+		</style>
+	</head>
+	<body>
+		<video id="video1" data-dash-player autoplay loop src="http://35.221.48.44:8080/video/dash/out1.mp4" controls>
+		</video>
+		
+		<video id="video2" data-dash-player autoplay loop src="http://35.221.48.44:8080/video/dash/out2.mp4" controls>
+		</video>
+
+		<video id="video3" data-dash-player autoplay loop src="http://35.221.48.44:8080/video/dash/out3.mp4" controls>
+		</video>
+
+		<video id="video4" data-dash-player autoplay loop src="http://35.221.48.44:8080/video/dash/out4.mp4" controls>
+		</video>
+
+		<button id="b1" onclick="play()">PLAY</button>
+		<button id="b2" onclick="pause()">PAUSE</button>
+		<button id="b3" onclick="stop()">STOP</button>
+
+		<script>
+			var video1 = document.getElementById("video1");
+			var video2 = document.getElementById("video2");
+			var video3 = document.getElementById("video3");
+			var video4 = document.getElementById("video4");
+			var id1 = window.setInterval(sync, 10);			
+
+			// video sychronization
+			function sync(){
+
+				var ctime1 = video1.currentTime;
+				console.log(ctime1);
+				
+				if(ctime1 > 10){
+					video1.pause();
+					window.setTimeout(play, 12000-ctime1*1000);
+					//window.setTimeout(play, 2000);
+					video1.currentTime = 12;
+					window.clearInterval(id1);
+				}
+			}
+			// play the video
+			function play(){
+				video1.play();
+				video2.play();
+				video3.play();
+				video4.play();
+			}
+
+			// pause the video
+			function pause(){
+				video1.pause();
+				video2.pause();
+				video3.pause();
+				video4.pause();
+			}
+
+			// stop the video
+			function stop(){
+				video1.pause();
+				video2.pause();
+				video3.pause();
+				video4.pause();
+				video1.currentTime = 0;
+				video2.currentTime = 0;
+				video3.currentTime = 0;
+				video4.currentTime = 0;	
+			}
+			
+		</script>
+
+		<script src="./dash.all.min.js"></script>
+	</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
